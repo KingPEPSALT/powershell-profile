@@ -1,15 +1,25 @@
 # powershell-profile
-my powershell profile
+This is my profile that makes Powershell look great.
+
+![screenshot](https://media.discordapp.net/attachments/753198748871557151/959191980431278130/unknown.png)
 
 Install a nerd font and set it as the font for your terminal. I'm using [windows terminal](https://github.com/Microsoft/Terminal) and the [Caskaydia Cove Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/CascadiaCode).
 If you don't use a nerd font, many of the terminal icons won't work.
 
-In powershell:
+### Create the profile
 ```powershell
 notepad $PROFILE # use vim or code instead of notepad if you prefer
 ```
+Copy and paste my profile into there.
 
-Run
+### Alternatively:
+Download the file
+```powershell
+mv Microsoft.PowerShell_profile.ps1 $PROFILE
+```
+
+---
+### Start the profile
 ```powershell
 &$PROFILE # this will start up the profile 
 ```
