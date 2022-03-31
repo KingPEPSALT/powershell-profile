@@ -13,7 +13,7 @@ notepad $PROFILE # use vim or code instead of notepad if you prefer
 Copy and paste my profile into there.
 
 ### Alternatively:
-Download the file
+Download the file and then in the same directory:
 ```powershell
 mv Microsoft.PowerShell_profile.ps1 $PROFILE
 ```
