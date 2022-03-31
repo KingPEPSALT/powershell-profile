@@ -23,3 +23,5 @@ mv Microsoft.PowerShell_profile.ps1 $PROFILE
 ```powershell
 &$PROFILE # this will start up the profile 
 ```
+![image](https://user-images.githubusercontent.com/68469008/161149716-22e32ac2-2b15-4302-ad8a-cc114f314a6a.png)
+without Acrylic
