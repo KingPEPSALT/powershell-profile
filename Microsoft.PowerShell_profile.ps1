@@ -1,12 +1,12 @@
 # oh-my-posh setup
 
-if (-Not(Get-Module -Name posh-git)){
+if (-Not(Get-Module -ListAvailable posh-git)){
 	Install-Module -Name posh-git -Scope CurrentUser
 }
-if (-Not(Get-Module -Name oh-my-posh)){
+if (-Not(Get-Module -ListAvailable oh-my-posh)){
 	Install-Module -Name oh-my-posh -Scope CurrentUser
 }
-if (-Not(Get-Module -Name Terminal-Icons)){
+if (-Not(Get-Module -ListAvailable Terminal-Icons)){
 	Install-Module -Name Terminal-Icons -Scope CurrentUser
 }
 
