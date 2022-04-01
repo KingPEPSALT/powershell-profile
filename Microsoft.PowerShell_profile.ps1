@@ -1,6 +1,6 @@
 Set-ExecutionPolicy RemoteSigned -scope CurrentUser
-# oh-my-posh setup
 
+# install modules if they don't exist
 if (-Not(Get-Module -ListAvailable posh-git)){
 	Install-Module -Name posh-git -Scope CurrentUser
 }
@@ -10,8 +10,11 @@ if (-Not(Get-Module -ListAvailable oh-my-posh)){
 if (-Not(Get-Module -ListAvailable Terminal-Icons)){
 	Install-Module -Name Terminal-Icons -Scope CurrentUser
 }
-$global:MYVIMRC="$HOME\_vimrc"
+
+$global:MYVIMRC="$HOME\_vimrc" # change to vimrc location
 $env:POSH_GIT_ENABLED=$true
+
+# oh-my-posh setup
 Import-Module posh-git
 Import-Module oh-my-posh
 Import-Module Terminal-Icons
@@ -25,9 +28,12 @@ function Get-CmdletAlias ($cmdletname) {
 			Format-Table -Property Definition, Name -AutoSize
 }
 
+# paste from clipboard into file
 function pastef ($filepath) {
 	Get-Clipboard | Out-String | Set-Content $filepath
 }
+
+# copy from file into clipboard
 function yankf ($filepath) {
 	cat $filepath | clip
 }
@@ -36,7 +42,6 @@ function yankf ($filepath) {
 function touch ($filename) { 
 	New-Item -ItemType "file" $filename 
 }
-
 New-Alias -Name grep -Value Select-String
 
 # powershell autocomplete
@@ -58,4 +63,8 @@ Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
 }
 
 clear
-macchina -t Hardair; if (-not $?) {scoop install macchina;clear;macchina -t Hardair; if (-not $?) { iwr -useb get.scoop.sh | iex;refreshenv;scoop install macchina;clear;macchina -t hardair}}
+# macchina = neofetch but faster
+function MACCHINA_CMD {
+	macchina # change this to include a theme if you prefer or have one
+}
+MACCHINA_CMD; if (-not $?) {scoop install macchina;clear;MACCHINA_CMD; if (-not $?) { iwr -useb get.scoop.sh | iex;refreshenv;scoop install macchina;clear;MACCHINA_CMD}}
