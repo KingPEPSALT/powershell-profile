@@ -25,6 +25,13 @@ function Get-CmdletAlias ($cmdletname) {
 			Format-Table -Property Definition, Name -AutoSize
 }
 
+function pastef ($filepath) {
+	Get-Clipboard | Out-String | Set-Content $filepath
+}
+function yankf ($filepath) {
+	cat $filepath | clip
+}
+
 # linux-like commands
 function touch ($filename) { 
 	New-Item -ItemType "file" $filename 
@@ -51,4 +58,4 @@ Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
 }
 
 clear
-macchina; if (-not $LASTEXITCODE -eq 0) {scoop install macchina;clear;macchina; if (-Not $LASTEXITCODE -eq 0) { iwr -useb get.scoop.sh | iex;refreshenv;scoop install macchina;clear;macchina}}
+macchina -t Hardair; if (-not $?) {scoop install macchina;clear;macchina -t Hardair; if (-not $?) { iwr -useb get.scoop.sh | iex;refreshenv;scoop install macchina;clear;macchina -t hardair}}
