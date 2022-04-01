@@ -1,3 +1,4 @@
+Set-ExecutionPolicy RemoteSigned -scope CurrentUser
 # oh-my-posh setup
 
 if (-Not(Get-Module -ListAvailable posh-git)){
@@ -9,7 +10,7 @@ if (-Not(Get-Module -ListAvailable oh-my-posh)){
 if (-Not(Get-Module -ListAvailable Terminal-Icons)){
 	Install-Module -Name Terminal-Icons -Scope CurrentUser
 }
-
+$global:MYVIMRC="$HOME\_vimrc"
 $env:POSH_GIT_ENABLED=$true
 Import-Module posh-git
 Import-Module oh-my-posh
@@ -50,3 +51,4 @@ Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
 }
 
 clear
+macchina; if (-not $LASTEXITCODE -eq 0) {scoop install macchina;clear;macchina; if (-Not $LASTEXITCODE -eq 0) { iwr -useb get.scoop.sh | iex;refreshenv;scoop install macchina;clear;macchina}}
