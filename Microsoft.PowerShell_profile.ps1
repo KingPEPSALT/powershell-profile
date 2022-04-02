@@ -38,6 +38,21 @@ function yankf ($filepath) {
 	cat $filepath | clip
 }
 
+# alias to swap between D:\user and C:\users\user (I use this a lot, remove it if you don't need it)
+function cdp {
+	$user = [System.Environment]::UserName
+	if ($(Convert-Path .) -like "C:*"){
+		Set-Location "D:\$user" ; clear
+	}else{
+		Set-Location "C:\Users\$user" ; clear
+	}
+}
+
+# simple alias to run profile (I use this a lot as well)
+function rpf {
+	&$PROFILE
+}
+
 # linux-like commands
 function touch ($filename) { 
 	New-Item -ItemType "file" $filename 
@@ -65,6 +80,6 @@ Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
 clear
 # macchina = neofetch but faster
 function MACCHINA_CMD {
-	macchina # change this to include a theme if you prefer or have one
+	macchina -t Hardair # change this to include a theme if you prefer or have one
 }
 MACCHINA_CMD; if (-not $?) {scoop install macchina;clear;MACCHINA_CMD; if (-not $?) { iwr -useb get.scoop.sh | iex;refreshenv;scoop install macchina;clear;MACCHINA_CMD}}
