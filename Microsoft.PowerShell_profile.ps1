@@ -1,5 +1,10 @@
 Set-ExecutionPolicy RemoteSigned -scope CurrentUser
 
+<#
+	
+	OH-MY-POSH SETUP ---------------------------------------
+
+#>
 # install modules if they don't exist
 if (-Not(Get-Module -ListAvailable posh-git)){
 	Install-Module -Name posh-git -Scope CurrentUser
@@ -11,34 +16,41 @@ if (-Not(Get-Module -ListAvailable Terminal-Icons)){
 	Install-Module -Name Terminal-Icons -Scope CurrentUser
 }
 
-$global:MYVIMRC="$HOME\_vimrc" # change to vimrc location
-$env:POSH_GIT_ENABLED=$true
-
-# oh-my-posh setup
+# import necessary modules
 Import-Module posh-git
 Import-Module oh-my-posh
 Import-Module Terminal-Icons
 
-Set-PoshPrompt -Theme clean-detailed
+$env:POSH_GIT_ENABLED=$true
 
-# command that gets all of the aliases for another command
-function Get-CmdletAlias ($cmdletname) {
-	Get-Alias |
-		Where-Object -FilterScript {$_.Definition -like "$cmdletname"} |
-			Format-Table -Property Definition, Name -AutoSize
-}
+Set-PoshPrompt -Theme ys # feel free to type: Get-PoshThemes and replace 'ys' here with your favourite theme
 
-# paste from clipboard into file
+
+<#
+
+	COMMANDS AND ALIASES -----------------------------------
+
+	pastef: creates a file with the contents of the clipboard
+	yankf:  copies whole file into clipboard
+	rpf:    runs the profile
+	cdp:    changes from C:/Users/Pepsalt to D:/Pepsalt
+	v:      nvim
+	touch:  makes a new file, linux touch
+	grep:   matches strings, linux grep
+#>
+
 function pastef ($filepath) {
 	Get-Clipboard | Out-String | Set-Content $filepath
 }
 
-# copy from file into clipboard
 function yankf ($filepath) {
 	cat $filepath | clip
 }
 
-# alias to swap between D:\user and C:\users\user (I use this a lot, remove it if you don't need it)
+function rpf {
+	&$PROFILE
+}
+
 function cdp {
 	$user = [System.Environment]::UserName
 	if ($(Convert-Path .) -like "C:*"){
@@ -48,18 +60,20 @@ function cdp {
 	}
 }
 
-# simple alias to run profile (I use this a lot as well)
-function rpf {
-	&$PROFILE
-}
-
-# linux-like commands
 function touch ($filename) { 
 	New-Item -ItemType "file" $filename 
 }
+
+New-Alias -Name v -Value nvim
 New-Alias -Name grep -Value Select-String
 
-# powershell autocomplete
+
+<#
+
+	POWERSHELL AUTOCOMPLETE --------------------------------
+
+#>
+
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
 Register-ArgumentCompleter -Native -CommandName winget -ScriptBlock {
     param($wordToComplete, $commandAst, $cursorPosition)
@@ -77,9 +91,40 @@ Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
         }
 }
 
+
+<#
+
+	TERMINAL STARTUP ---------------------------------------
+
+#>
+
+# use macchina for system information
 clear
-# macchina = neofetch but faster
-function MACCHINA_CMD {
-	macchina -t Hardair # change this to include a theme if you prefer or have one
+macchina;							# run macchina
+if (-not $?) {							# 				macchina doesnt exist
+	scoop install macchina;				# try to install macchina with scoop
+	clear;								
+	macchina;						# run macchina
+	if (-not $?) {						# 				scoop doesnt exist
+		iwr -useb get.scoop.sh | iex;	# install scoop
+		refreshenv;						# refresh environment so scoop install is registered
+		scoop install macchina; 		# install macchina
+		clear; 						
+		macchina					# run macchina
+	}
 }
-MACCHINA_CMD; if (-not $?) {scoop install macchina;clear;MACCHINA_CMD; if (-not $?) { iwr -useb get.scoop.sh | iex;refreshenv;scoop install macchina;clear;MACCHINA_CMD}}
+
+
+<#
+
+	GLOBAL VARIABLES ---------------------------------------
+
+	$VIMConf: location of the vim config, usually $HOME/_vimrc
+	$NVIMConf: location of the nvim config, usually $env:LOCALAPPDATA\nvim\init.vim
+	$MACCHINA_THEMES: location of macchina themes directory
+
+#>
+
+$global:VIMConf="$HOME\_vimrc"
+$global:NVIMConf="$env:LOCALAPPDATA\nvim\init.vim"
+$global:MACCHINA_THEMES = $(macchina -l).split('`')[0].TrimEnd(":")
