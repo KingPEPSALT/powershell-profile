@@ -26,12 +26,22 @@ The profile will install:
 
 if they aren't already installed.
 
+Install
+---
+### Easy install
+
+```powershell
+iwr -useb https://raw.githubusercontent.com/KingPEPSALT/powershell-profile/main/Microsoft.PowerShell_profile.ps1 |`
+  ni $PROFILE -Force
+```
+---
 ### Create the profile
 ```powershell
 notepad $PROFILE # use vim or code instead of notepad if you prefer
 ```
 Copy and paste my profile into there.
 
+---
 ### Alternatively:
 Download the file and then in the same directory:
 ```powershell
