@@ -68,3 +68,7 @@ touch  | makes a new file, linux touch
 grep   | matches strings, linux grep 
 ccat   | syntax highlighted cat, to activate this: https://github.com/pygments/pygments 
 vp     | opens profile in the first editor it can find out of nvim->vim->code->notepad 
+
+Themes
+---
+If you want my custom themes: go [here](https://github.com/KingPEPSALT/powershell-profile/blob/main/themes/oh-my-posh/emodipt_edit.json)
