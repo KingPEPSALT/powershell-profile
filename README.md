@@ -62,7 +62,7 @@ pastef | creates a file with the contents of the clipboard
 yankf  | copies whole file into clipboard 
 ykp    | yankf on the profile, copies profile onto clipboard 
 rpf    | runs the profile 
-cdp    | changes from C:/Users/Pepsalt to D:/Pepsalt 
+cdp    | changes from C:/Users/<User> to D:/<User> 
 v      | nvim/vim if you have them 
 touch  | makes a new file, linux touch 
 grep   | matches strings, linux grep 
