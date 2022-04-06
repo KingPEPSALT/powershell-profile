@@ -5,6 +5,8 @@
 ![image](https://media.discordapp.net/attachments/753198748871557151/959191980431278130/unknown.png)
 ![image](https://user-images.githubusercontent.com/68469008/161149716-22e32ac2-2b15-4302-ad8a-cc114f314a6a.png)
 ![image](https://user-images.githubusercontent.com/68469008/161399995-76431e83-fc19-405f-adcf-823ef57a95e5.png)
+(Screenshot using my [**emodipt_edit**](https://github.com/KingPEPSALT/powershell-profile/blob/main/themes/oh-my-posh/emodipt_edit.json) oh-my-posh theme.)
+![image](https://user-images.githubusercontent.com/68469008/162068249-31beb043-6f4e-4e22-a25f-6b3ad1674140.png)
 
 ---
 Install a nerd font and set it as the font for your terminal. I'm using [windows terminal](https://github.com/Microsoft/Terminal) and the [Caskaydia Cove Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/CascadiaCode).
