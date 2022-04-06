@@ -23,8 +23,11 @@ The profile will install:
 - [**terminal-icons**](https://github.com/devblackops/Terminal-Icons) for the icons in the prompt
 - [**scoop**](https://scoop.sh/) to install macchina, though you will likely want this anyway
 - [**macchina**](https://github.com/Macchina-CLI/macchina) for a neofetch replacement as neofetch is slow
-
 if they aren't already installed.
+
+The profile will make use of if available but will not install:
+- [**pygments cli**](https://github.com/pygments/pygments)
+- **[neovim](https://neovim.io/)/[vim](https://www.vim.org/)** pssst... [(my vim config)](https://github.com/kingpepsalt/vimrc)
 
 Install
 ---
