@@ -69,4 +69,4 @@ vp     | opens profile in the first editor it can find out of nvim->vim->code->n
 
 Themes
 ---
-If you want my custom themes: go [here](https://github.com/KingPEPSALT/powershell-profile/blob/main/themes/oh-my-posh/emodipt_edit.json)
+If you want my custom themes: go [here](https://github.com/KingPEPSALT/powershell-profile/blob/main/themes/oh-my-posh/README.md)
