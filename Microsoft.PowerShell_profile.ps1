@@ -23,20 +23,28 @@ Import-Module Terminal-Icons
 
 $env:POSH_GIT_ENABLED=$true
 
-Set-PoshPrompt -Theme ys # feel free to type: Get-PoshThemes and replace 'ys' here with your favourite theme
+Set-PoshPrompt -Theme zash # feel free to type: Get-PoshThemes and replace 'zash' here with your favourite theme
 
 
 <#
 
-	COMMANDS AND ALIASES -----------------------------------
+	COMMANDS AND ALIASES
 
-	pastef: creates a file with the contents of the clipboard
-	yankf:  copies whole file into clipboard
-	rpf:    runs the profile
-	cdp:    changes from C:/Users/Pepsalt to D:/Pepsalt
-	v:      nvim
-	touch:  makes a new file, linux touch
-	grep:   matches strings, linux grep
+	+--------+--------------------------------------------------------------------------------+
+	| alias  | description																	  |
+	+--------+--------------------------------------------------------------------------------+
+	| pastef | creates a file with the contents of the clipboard							  |
+	| yankf  | copies whole file into clipboard												  |
+	| ykp    | yankf on the profile, copies profile onto clipboard 							  |
+	| rpf    | runs the profile																  |
+	| cdp    | changes from C:/Users/Pepsalt to D:/Pepsalt									  |
+	| v      | nvim/vim if you have them													  |
+	| touch  | makes a new file, linux touch											      |
+	| grep   | matches strings, linux grep  												  |
+	| ccat   | syntax highlighted cat, to activate this: https://github.com/pygments/pygments |
+	| vp     | opens profile in the first editor it can find out of nvim->vim->code->notepad  |
+	+--------+--------------------------------------------------------------------------------+
+
 #>
 
 function pastef ($filepath) {
@@ -45,6 +53,18 @@ function pastef ($filepath) {
 
 function yankf ($filepath) {
 	cat $filepath | clip
+	if ($?){
+		$opth = $filepath
+		if ($filepath -eq $PROFILE){
+			$opth = "`$PROFILE"
+		}
+		$e = $([char]0x1b) # ansi escape character
+		echo "Successfully yanked $e[0;32m$opth$e[0m into clipboard..."
+	}
+}
+
+function ykp {
+	yankf $PROFILE
 }
 
 function rpf {
@@ -64,8 +84,26 @@ function touch ($filename) {
 	New-Item -ItemType "file" $filename 
 }
 
-New-Alias -Name v -Value nvim
+if (Get-Command nvim){
+	New-Alias -Name v -Value nvim
+}elseif (Get-Command vim){
+	New-Alias -Name v -Value vim
+}
+function vp { 
+	if (alias v){
+		v $PROFILE
+	}elseif(Get-Command code){
+		code $PROFILE
+	}else{
+		Notepad.exe $PROFILE
+	}
+}
 New-Alias -Name grep -Value Select-String
+
+# https://github.com/pygments/pygments
+if (Get-Command pygmentize){
+	New-Alias -Name ccat -Value pygmentize
+}
 
 
 <#
@@ -100,17 +138,17 @@ Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
 
 # use macchina for system information
 clear
-macchina;							# run macchina
+macchina -t hardair;				# run macchina
 if (-not $?) {							# 				macchina doesnt exist
 	scoop install macchina;				# try to install macchina with scoop
 	clear;								
-	macchina;						# run macchina
+	macchina -t hardair;			# run macchina
 	if (-not $?) {						# 				scoop doesnt exist
 		iwr -useb get.scoop.sh | iex;	# install scoop
 		refreshenv;						# refresh environment so scoop install is registered
 		scoop install macchina; 		# install macchina
 		clear; 						
-		macchina					# run macchina
+		macchina -t hardair 		# run macchina
 	}
 }
 
