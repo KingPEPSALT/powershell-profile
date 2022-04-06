@@ -38,9 +38,9 @@ Set-PoshPrompt -Theme zash # feel free to type: Get-PoshThemes and replace 'zash
 	| ykp    | yankf on the profile, copies profile onto clipboard                            |
 	| rpf    | runs the profile                                                               |
 	| cdp    | changes from C:/Users/Pepsalt to D:/Pepsalt                                    |
-	| v      | nvim/vim if you have them													  |
-	| touch  | makes a new file, linux touch											      |
-	| grep   | matches strings, linux grep  												  |
+	| v      | nvim/vim if you have them                                                      |
+	| touch  | makes a new file, linux touch                                                  |
+	| grep   | matches strings, linux grep                                                    |
 	| ccat   | syntax highlighted cat, to activate this: https://github.com/pygments/pygments |
 	| vp     | opens profile in the first editor it can find out of nvim->vim->code->notepad  |
 	+--------+--------------------------------------------------------------------------------+
@@ -139,14 +139,14 @@ Register-ArgumentCompleter -Native -CommandName dotnet -ScriptBlock {
 # use macchina for system information
 clear
 macchina -t hardair;				# run macchina
-if (-not $?) {							# 				macchina doesnt exist
-	scoop install macchina;				# try to install macchina with scoop
+if (-not $?) {                                      # macchina doesnt exist
+	scoop install macchina;			# try to install macchina with scoop
 	clear;								
 	macchina -t hardair;			# run macchina
-	if (-not $?) {						# 				scoop doesnt exist
+	if (-not $?) {				    # scoop doesnt exist
 		iwr -useb get.scoop.sh | iex;	# install scoop
-		refreshenv;						# refresh environment so scoop install is registered
-		scoop install macchina; 		# install macchina
+		refreshenv;			# refresh environment so scoop install is registered
+		scoop install macchina; 	# install macchina
 		clear; 						
 		macchina -t hardair 		# run macchina
 	}
