@@ -44,3 +44,17 @@ mv Microsoft.PowerShell_profile.ps1 $PROFILE
 &$PROFILE # this will start up the profile 
 ```
 ---
+
+### Aliases:
+alias  | description 
+---|---
+pastef | creates a file with the contents of the clipboard 
+yankf  | copies whole file into clipboard 
+ykp    | yankf on the profile, copies profile onto clipboard 
+rpf    | runs the profile 
+cdp    | changes from C:/Users/Pepsalt to D:/Pepsalt 
+v      | nvim/vim if you have them 
+touch  | makes a new file, linux touch 
+grep   | matches strings, linux grep 
+ccat   | syntax highlighted cat, to activate this: https://github.com/pygments/pygments 
+vp     | opens profile in the first editor it can find out of nvim->vim->code->notepad 
