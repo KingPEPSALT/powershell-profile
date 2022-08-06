@@ -9,6 +9,11 @@
 ![image](https://user-images.githubusercontent.com/68469008/162068249-31beb043-6f4e-4e22-a25f-6b3ad1674140.png)
 
 ---
+
+```
+NOTE: THIS DOES NOT WORK WITH POWERSHELL 7
+```
+
 Install a nerd font and set it as the font for your terminal. I'm using [windows terminal](https://github.com/Microsoft/Terminal) and the [Caskaydia Cove Nerd Font](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/CascadiaCode).
 If you don't use a nerd font, many of the terminal icons won't work.
 
